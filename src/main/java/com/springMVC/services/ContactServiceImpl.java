@@ -5,6 +5,8 @@ import com.springMVC.entity.Contact;
 import com.springMVC.repositories.ContactRepository;
 import com.springMVC.services.interfaces.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +27,7 @@ public class ContactServiceImpl implements ContactService{
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Contact findById(Long id) {
         return contactRepository.findOne(id);
     }
@@ -32,5 +35,11 @@ public class ContactServiceImpl implements ContactService{
     @Override
     public Contact save(Contact contact) {
         return contactRepository.save(contact);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Contact> findAllByPage(Pageable pageable) {
+        return contactRepository.findAll(pageable);
     }
 }
