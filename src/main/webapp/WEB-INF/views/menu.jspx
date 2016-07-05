@@ -11,15 +11,15 @@
     <spring:message code="menu_header_text" var="menuHeaderText"/>
     <spring:message code="menu_add_contact" var="menuAddContact"/>
     <spring:url value="/contacts?form" var="addContactUrl"/>
-    
+
     <spring:message code="label_login" var="labelLogin"/>
-    <spring:url var="loginUrl" value="/j_spring_security_check"/>
+    <spring:url var="loginUrl" value="/j_spring_security_check" />
 
     <h3>${menuHeaderText}</h3>
     <sec:authorize access="hasRole('ROLE_USER')">
         <a href="${addContactUrl}"><h3>${menuAddContact}</h3></a>
     </sec:authorize>
-    
+
     <sec:authorize access="isAnonymous()">
         <div id="login">
             <form name="loginForm" action="${loginUrl}" method="post">
@@ -30,14 +30,14 @@
                         <td><input type="text" name="j_username"/></td>
                     </tr>
                     <tr>
-                        <td>Password</td>
+                        <td>Password:</td>
                         <td><input type="password" name="j_password"/></td>
                     </tr>
                     <tr>
-                        <td cosplan="2" align="center">
-                            <input name="submit" type="submit" value="Login"/>
-                        </td>
+                        <td colspan="2" align="center"><input name="submit" type="submit"
+                                                              value="Login"/></td>
                     </tr>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 </table>
             </form>
         </div>

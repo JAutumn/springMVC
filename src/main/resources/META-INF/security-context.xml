@@ -7,10 +7,12 @@
                                  http://www.springframework.org/schema/security
                                  http://www.springframework.org/schema/security/spring-security.xsd">
     <http use-expressions="true">
-        <intercept-url pattern='/WEB-INF' access='permitAll' />
+        <intercept-url pattern='/*' access='permitAll' />
         <form-login login-page="/contacts"
                     authentication-failure-url="/security/loginfail"
-                    default-target-url="/contacts" />
+                    username-parameter="j_username"
+                    password-parameter="j_password"
+                    login-processing-url="/j_spring_security_check"/>
         <logout logout-success-url="/contacts"/>
     </http>
     <authentication-manager>
