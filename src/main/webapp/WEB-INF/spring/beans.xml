@@ -14,6 +14,7 @@
                            http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
     <context:annotation-config/>
     <context:component-scan base-package="com.springMVC"/>
+    <import resource="classpath:META-INF/security-context.xml"/>
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
